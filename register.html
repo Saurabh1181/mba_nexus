@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Nexus | Sign In & Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #62B4FF, #82E5E5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #BDF1FF;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px 40px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2A2A4C;
+            margin-bottom: 20px;
+        }
+
+        .form-toggle {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .form-toggle button {
+            background-color: #82CFF6;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2A2A4C;
+        }
+
+        .form-toggle button.active {
+            background-color: #62B4FF;
+            color: #FFF;
+        }
+
+        form {
+            display: none;
+            text-align: left;
+        }
+
+        form.active {
+            display: block;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+            color: #2A2A4C;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        /* Checkbox Alignment */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin: 0;
+        }
+
+        button.submit-btn {
+            background-color: #62B4FF;
+            color: #FFF;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button.submit-btn:hover {
+            background: #2A2A4C;
+        }
+        .signInBtn, .signUpBtn:hover {
+            background: #2A2A4C;
+        }
+
+        .forgot {
+            font-size: 12px;
+            margin-bottom: 15px;
+            color: #2A2A4C;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        /* Grid Layout for Sign Up Form */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-item.wide {
+            grid-column: span 2;
+        }
+
+        .terms {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Toggle Buttons -->
+        <div class="form-toggle">
+            <button id="signInBtn" class="active" onclick="showForm('signIn')">Sign In</button>
+            <button id="signUpBtn" onclick="showForm('signUp')">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signInForm" class="active">
+            <h2>Sign In</h2>
+            <label for="username">Username or Email</label>
+            <input type="text" id="username" placeholder="Username or Email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password">
+
+            <div class="forgot">Forgot?</div>
+
+            <!-- Checkbox Alignment -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="keepSignedIn">
+                <label for="keepSignedIn" style="font-weight: normal;">Keep me Signed in</label>
+            </div>
+
+            <button type="button" class="submit-btn">Sign In</button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signUpForm">
+            <h2>Sign Up</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="First Name">
+                </div>
+                <div class="grid-item">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Last Name">
+                </div>
+                <div class="grid-item">
+                    <label for="userName">User Name</label>
+                    <input type="text" id="userName" placeholder="User Name">
+                </div>
+                <div class="grid-item">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="E-mail">
+                </div>
+                <div class="grid-item">
+                    <label for="password1">Password</label>
+                    <input type="password" id="password1" placeholder="Password">
+                </div>
+                <div class="grid-item">
+                    <label for="password2">Re-type Password</label>
+                    <input type="password" id="password2" placeholder="Re-type Password">
+                </div>
+
+                <!-- Checkbox Alignment -->
+                <div class="checkbox-container">
+                    <input type="checkbox" id="keepSignedIn">
+                    <label for="terms" class="terms">By signing up, I agree with the website's <strong>Terms and
+                            Conditions</strong>.</label>
+                </div>
+                <!-- <div class="grid-item wide checkbox-container">
+                    <input type="checkbox" id="terms">
+                    <label for="terms" class="terms">By signing up, I agree with the website's <strong>Terms and Conditions</strong>.</label>
+                </div> -->
+            </div>
+
+            <button type="button" class="submit-btn">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function showForm(form) {
+            // Toggle buttons
+            document.getElementById('signInBtn').classList.remove('active');
+            document.getElementById('signUpBtn').classList.remove('active');
+
+            // Toggle forms
+            document.getElementById('signInForm').classList.remove('active');
+            document.getElementById('signUpForm').classList.remove('active');
+
+            if (form === 'signIn') {
+                document.getElementById('signInBtn').classList.add('active');
+                document.getElementById('signInForm').classList.add('active');
+            } else {
+                document.getElementById('signUpBtn').classList.add('active');
+                document.getElementById('signUpForm').classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
